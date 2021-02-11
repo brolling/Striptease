@@ -48,6 +48,9 @@
 #include "fx/Spectrum.h"
 #include "fx/Vertigo.h"
 #include "fx/Volcane.h"
+#include "fx/FreqScroller.h"
+#include "fx/FreqScrollerRev.h"
+#include "fx/DrumScroller.h"
 
 class Stage {
     private:
@@ -65,8 +68,8 @@ class Stage {
         const static uint8_t CH1_PIN = 14;
         const static uint8_t CH2_PIN = 17;
         const static uint8_t CH3_PIN = 1;
-        void addFx(Fx *fx1 = nullptr, Fx *fx2 = nullptr, Fx *fx3 = nullptr) {
-            Fx *fx = new Multiplex(fx1, fx2, fx3);
+        void addFx(Fx *fx1 = nullptr, Fx *fx2 = nullptr, Fx *fx3 = nullptr, Fx *fx4 = nullptr, Fx *fx5 = nullptr, Fx *fx6 = nullptr) {
+            Fx *fx = new Multiplex(fx1, fx2, fx3, fx4);
             randomFxIndexes.push_back(fxs.size());
             fxs.push_back(fx);
         }

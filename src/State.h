@@ -5,7 +5,7 @@
 
 class State {
     private:
-        static const uint8_t DEFAULT_FX_SPEED = 20;
+        static const uint8_t DEFAULT_FX_SPEED = 50;
         static const uint8_t DEFAULT_CYCLE_SPEED = 50;
         elapsedMicros microseconds;
         float slowRotatingHueInternal;
