@@ -1,9 +1,6 @@
 #include "Ants.h"
 
-Ants::Ants(Strip *strip, AudioChannel *audioChannel, State *state) {
-    this->strip = strip;
-    this->audioChannel = audioChannel;
-    this->state = state;
+Ants::Ants(Strip *strip, AudioChannel *audioChannel, State *state) : Fx(strip, audioChannel, state) {
     audioTrigger = new AudioTrigger(audioChannel);
     items = new Item[ITEMS];
     for (uint8_t i = 0; i < ITEMS; i++) {
@@ -17,7 +14,7 @@ Ants::~Ants() {
 }
 
 void Ants::reset() {
-    clear(strip);
+    clear();
     for (uint8_t i = 0; i < ITEMS; i++) {
         items[i].item.reset();
     }
@@ -30,11 +27,11 @@ void Ants::loop() {
     bool trigger = audioTrigger->triggered(.5);
 
     for (uint8_t i = 0; i < ITEMS; i++) {
-        loopItem(items[i], trigger, audioChannel->beatDetected ? audioChannel->rms : .1f);
+        loopItem(items[i], trigger);
     }
 }
 
-void Ants::loopItem(Item &item, bool &trigger, float strength) {
+void Ants::loopItem(Item &item, bool &trigger) {
     item.item.loop();
     if (item.item.getVelocity() < 0) {
         item.item.color.fadeToBlackBy(item.decay);
@@ -42,11 +39,11 @@ void Ants::loopItem(Item &item, bool &trigger, float strength) {
 
     if (item.item.isStable() && trigger) {
         trigger = false; 
-        randomizeItem(item, strength);
+        resetItem(item);
     }
 }
 
-void Ants::randomizeItem(Item &item, float strength) {
+void Ants::resetItem(Item &item) {
     item.item.reset()
         .setColor(ColorFromPalette(PALETTE, state->slowRotatingHue))
         .setPosition(0)

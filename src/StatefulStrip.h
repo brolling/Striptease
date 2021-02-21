@@ -1,17 +1,20 @@
-#ifndef SubStrip_h
-#define SubStrip_h
+#ifndef StatefulStrip_h
+#define StatefulStrip_h
 
-#include "BufferedStrip.h"
+#include "Strip.h"
 
-class SubStrip : public Strip {
+// class BufferedStrip;
+
+class StatefulStrip : public Strip {
     private: 
-        Strip *strip;
-        uint16_t start;
-        uint16_t end;
+        CRGBSet *leds;
+        uint16_t density;
 
     public:
-        SubStrip(Strip *strip, int16_t start, int16_t end);
-        Strip *buffered();
+        StatefulStrip(CRGBSet &leds, uint16_t density = 0);
+        StatefulStrip(CRGBSet *leds, uint16_t density = 0);
+        StatefulStrip();
+        void setLeds(CRGBSet *leds);
         uint16_t size();
         uint16_t first();
         uint16_t center();

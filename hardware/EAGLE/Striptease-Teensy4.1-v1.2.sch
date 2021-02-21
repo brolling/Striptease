@@ -9079,17 +9079,17 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/2" value="100"/>
 <part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/2" value="100"/>
 <part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="050-025X075" package3d_urn="urn:adsk.eagle:package:23637/1" value="100n"/>
-<part name="J1" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA02-100" device="" package3d_urn="urn:adsk.eagle:package:8081649/1"/>
-<part name="J5" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA04-100" device="" package3d_urn="urn:adsk.eagle:package:8081620/1"/>
-<part name="J4" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA04-100" device="" package3d_urn="urn:adsk.eagle:package:8081620/1"/>
+<part name="POWER" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA02-100" device="" package3d_urn="urn:adsk.eagle:package:8081649/1"/>
+<part name="LED5-8" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA04-100" device="" package3d_urn="urn:adsk.eagle:package:8081620/1"/>
+<part name="LED1-4" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA04-100" device="" package3d_urn="urn:adsk.eagle:package:8081620/1"/>
 <part name="R7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/2" value="100"/>
 <part name="R8" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/2" value="100"/>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+5V" device=""/>
 <part name="GND1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="U$3" library="teensy" deviceset="TEENSY41-E" device=""/>
 <part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="050-025X075" package3d_urn="urn:adsk.eagle:package:23637/1" value="100n"/>
-<part name="J2" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA03-100" device="" package3d_urn="urn:adsk.eagle:package:8081621/1"/>
-<part name="J3" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA02-100" device="" package3d_urn="urn:adsk.eagle:package:8081649/1"/>
+<part name="IR-RECV" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA03-100" device="" package3d_urn="urn:adsk.eagle:package:8081621/1"/>
+<part name="PROGR" library="con-amp" library_urn="urn:adsk.eagle:library:127" deviceset="MTA02-100" device="" package3d_urn="urn:adsk.eagle:package:8081649/1"/>
 </parts>
 <sheets>
 <sheet>
@@ -9138,15 +9138,15 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <attribute name="NAME" x="95.504" y="86.741" size="1.778" layer="95"/>
 <attribute name="VALUE" x="95.504" y="81.661" size="1.778" layer="96"/>
 </instance>
-<instance part="J1" gate="G$1" x="187.96" y="93.98" smashed="yes" rot="R270">
+<instance part="POWER" gate="G$1" x="187.96" y="93.98" smashed="yes" rot="R270">
 <attribute name="NAME" x="187.96" y="88.9" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="184.15" y="88.9" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="J5" gate="G$1" x="185.42" y="50.8" smashed="yes" rot="R270">
+<instance part="LED5-8" gate="G$1" x="185.42" y="50.8" smashed="yes" rot="R270">
 <attribute name="NAME" x="185.42" y="43.18" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="181.61" y="43.18" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="J4" gate="G$1" x="185.42" y="25.4" smashed="yes" rot="R270">
+<instance part="LED1-4" gate="G$1" x="185.42" y="25.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="185.42" y="17.78" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="181.61" y="17.78" size="1.778" layer="96" rot="R270"/>
 </instance>
@@ -9169,11 +9169,11 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <attribute name="NAME" x="110.744" y="86.741" size="1.778" layer="95"/>
 <attribute name="VALUE" x="110.744" y="81.661" size="1.778" layer="96"/>
 </instance>
-<instance part="J2" gate="G$1" x="187.96" y="101.6" smashed="yes" rot="R270">
+<instance part="IR-RECV" gate="G$1" x="187.96" y="101.6" smashed="yes" rot="R270">
 <attribute name="NAME" x="187.96" y="96.52" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="184.15" y="96.52" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="J3" gate="G$1" x="187.96" y="111.76" smashed="yes" rot="R270">
+<instance part="PROGR" gate="G$1" x="187.96" y="111.76" smashed="yes" rot="R270">
 <attribute name="NAME" x="187.96" y="106.68" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="184.15" y="106.68" size="1.778" layer="96" rot="R270"/>
 </instance>
@@ -9187,7 +9187,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <wire x1="172.72" y1="30.48" x2="177.8" y2="30.48" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="30.48" x2="177.8" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="25.4" x2="182.88" y2="25.4" width="0.1524" layer="91"/>
-<pinref part="J4" gate="G$1" pin="2"/>
+<pinref part="LED1-4" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$8" class="0">
@@ -9196,14 +9196,14 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="172.72" y1="25.4" x2="175.26" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="25.4" x2="175.26" y2="22.86" width="0.1524" layer="91"/>
-<pinref part="J4" gate="G$1" pin="3"/>
+<pinref part="LED1-4" gate="G$1" pin="3"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="172.72" y1="20.32" x2="182.88" y2="20.32" width="0.1524" layer="91"/>
-<pinref part="J4" gate="G$1" pin="4"/>
+<pinref part="LED1-4" gate="G$1" pin="4"/>
 </segment>
 </net>
 <net name="N$11" class="0">
@@ -9240,14 +9240,14 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <wire x1="172.72" y1="35.56" x2="180.34" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="35.56" x2="180.34" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="27.94" x2="182.88" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="J4" gate="G$1" pin="1"/>
+<pinref part="LED1-4" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$20" class="0">
 <segment>
 <pinref part="R5" gate="G$1" pin="2"/>
 <wire x1="172.72" y1="45.72" x2="182.88" y2="45.72" width="0.1524" layer="91"/>
-<pinref part="J5" gate="G$1" pin="4"/>
+<pinref part="LED5-8" gate="G$1" pin="4"/>
 </segment>
 </net>
 <net name="N$22" class="0">
@@ -9256,7 +9256,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <wire x1="172.72" y1="50.8" x2="175.26" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="50.8" x2="175.26" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="48.26" x2="182.88" y2="48.26" width="0.1524" layer="91"/>
-<pinref part="J5" gate="G$1" pin="3"/>
+<pinref part="LED5-8" gate="G$1" pin="3"/>
 </segment>
 </net>
 <net name="N$23" class="0">
@@ -9322,7 +9322,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <wire x1="22.86" y1="119.38" x2="22.86" y2="81.28" width="0.1524" layer="91"/>
 <pinref part="U$3" gate="G$1" pin="22-A8/CTX1"/>
 <wire x1="25.4" y1="81.28" x2="22.86" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="2"/>
+<pinref part="IR-RECV" gate="G$1" pin="2"/>
 <wire x1="114.3" y1="101.6" x2="185.42" y2="101.6" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -9333,7 +9333,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="U$3" gate="G$1" pin="3V3-3"/>
 <wire x1="66.04" y1="114.3" x2="66.04" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="114.3" x2="93.98" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="1"/>
+<pinref part="IR-RECV" gate="G$1" pin="1"/>
 <wire x1="93.98" y1="104.14" x2="93.98" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="185.42" y1="104.14" x2="93.98" y2="104.14" width="0.1524" layer="91"/>
 <junction x="93.98" y="104.14"/>
@@ -9353,10 +9353,10 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <wire x1="116.84" y1="91.44" x2="139.7" y2="91.44" width="0.1524" layer="91"/>
 <junction x="139.7" y="91.44"/>
 <wire x1="162.56" y1="91.44" x2="139.7" y2="91.44" width="0.1524" layer="91"/>
-<pinref part="J1" gate="G$1" pin="2"/>
-<pinref part="J2" gate="G$1" pin="3"/>
+<pinref part="POWER" gate="G$1" pin="2"/>
+<pinref part="IR-RECV" gate="G$1" pin="3"/>
 <wire x1="185.42" y1="99.06" x2="180.34" y2="99.06" width="0.1524" layer="91"/>
-<pinref part="J3" gate="G$1" pin="2"/>
+<pinref part="PROGR" gate="G$1" pin="2"/>
 <wire x1="185.42" y1="109.22" x2="180.34" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="109.22" x2="180.34" y2="99.06" width="0.1524" layer="91"/>
 <junction x="180.34" y="99.06"/>
@@ -9412,13 +9412,13 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="R7" gate="G$1" pin="2"/>
 <wire x1="172.72" y1="55.88" x2="177.8" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="55.88" x2="177.8" y2="50.8" width="0.1524" layer="91"/>
-<pinref part="J5" gate="G$1" pin="2"/>
+<pinref part="LED5-8" gate="G$1" pin="2"/>
 <wire x1="177.8" y1="50.8" x2="182.88" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="J5" gate="G$1" pin="1"/>
+<pinref part="LED5-8" gate="G$1" pin="1"/>
 <wire x1="182.88" y1="53.34" x2="180.34" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="53.34" x2="180.34" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="R8" gate="G$1" pin="2"/>
@@ -9466,7 +9466,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <pinref part="C3" gate="G$1" pin="1"/>
 <wire x1="109.22" y1="88.9" x2="109.22" y2="93.98" width="0.1524" layer="91"/>
 <junction x="109.22" y="93.98"/>
-<pinref part="J1" gate="G$1" pin="1"/>
+<pinref part="POWER" gate="G$1" pin="1"/>
 <wire x1="185.42" y1="93.98" x2="162.56" y2="93.98" width="0.1524" layer="91"/>
 <junction x="162.56" y="93.98"/>
 </segment>
@@ -9479,7 +9479,7 @@ Source: http://ecommas.tycoelectronics.com .. ENG_CD_640456_W.pdf</description>
 <wire x1="15.24" y1="121.92" x2="15.24" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="U$3" gate="G$1" pin="PROGRAM"/>
 <wire x1="15.24" y1="35.56" x2="25.4" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="J3" gate="G$1" pin="1"/>
+<pinref part="PROGR" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>

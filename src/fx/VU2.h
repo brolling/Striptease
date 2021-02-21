@@ -1,5 +1,5 @@
-#ifndef VU1_h
-#define VU1_h
+#ifndef VU2_h
+#define VU2_h
 
 #include <Arduino.h>
 #include <FastLED.h>
@@ -7,17 +7,17 @@
 #include "Timer.h"
 #include "AudioChannel.h"
 #include "HarmonicMotion.h"
+#include "PhysicalStrip.h"
 
-class VU1 : public Fx {
+class VU2 : public Fx {
     private:
+        uint16_t size;
+        float elasticConstant;
         HarmonicMotion peak;
-        HarmonicMotion peakHold;
-        Timer fadeTimer = Timer(10);
         void resetPeak();
-        void resetPeakHold();
-
+        
     public:
-        VU1(Strip *strip, AudioChannel *audioChannel);
+        VU2(Strip *strip, AudioChannel *audioChannel, uint16_t size = 10, float elasticConstant = 1000);
         void loop();
         void reset();
 };
