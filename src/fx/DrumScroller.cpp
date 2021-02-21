@@ -9,7 +9,7 @@ DrumScroller::DrumScroller(Strip *strip, AudioChannel *audioChannel, State *stat
 }
 
 void DrumScroller::reset() {
-    clear(strip);
+    clear();
     shiftTimer = 0;
 }
 

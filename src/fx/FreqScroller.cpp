@@ -10,7 +10,7 @@ FreqScroller::FreqScroller(Strip *strip, AudioChannel *audioChannel, State *stat
 }
 
 void FreqScroller::reset() {
-    clear(strip);
+    clear();
     shiftTimer = 0;
 }
 

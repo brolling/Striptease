@@ -51,7 +51,6 @@
 #include "fx/Vertigo.h"
 #include "fx/Volcane.h"
 #include "fx/FreqScroller.h"
-#include "fx/FreqScrollerRev.h"
 #include "fx/DrumScroller.h"
 
 class Stage {
