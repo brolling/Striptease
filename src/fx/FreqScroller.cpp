@@ -53,7 +53,7 @@ void FreqScroller::loop() {
         int highest_frequency_band = 0;
 
         frequency_bands[0] = audioChannel->fftBin[5] * 1.5;
-        for (uint8_t i = 6; i <= 9; i++) {
+        for (uint8_t i = 7; i <= 9; i++) {
             frequency_bands[1] += (audioChannel->fftBin[i] * 0.6);
         };
         for (uint8_t i = 10; i <= 18; i++) {
@@ -116,7 +116,7 @@ void FreqScroller::loop() {
             spectrumval = peak_spectrumval;
         };
         
-        float peakaudio = midrange_volume * 2;
+        float peakaudio = midrange_volume * 2.5;
 
         if (spectrumval > 255) {
             spectrumval = 255;
@@ -124,14 +124,14 @@ void FreqScroller::loop() {
         };
         //Ensuring strip_brightness never exceeds 255
         float strip_brightness = 0;
-        if (peakaudio > 1) { 
+        if (peakaudio > 1.1) { 
             strip_brightness = 1;
         }
         else if (peakaudio < 0.1) { 
             strip_brightness = 0;
         }
         else {
-            strip_brightness = peakaudio;
+            strip_brightness = peakaudio - 0.1;
         };
         /*
         // This plays with adding white spots and reversing the direction of the strip when there's a beat. It's probably a bad idea.
@@ -142,9 +142,6 @@ void FreqScroller::loop() {
             };
         } else { 
         */
-        Serial.print("   ");
-        Serial.print(strip_brightness);
-        Serial.println();
 
         if (direction == 0) {
             strip->shiftUp(ColorFromPalette(PALETTE, spectrumval, strip_brightness * 255));

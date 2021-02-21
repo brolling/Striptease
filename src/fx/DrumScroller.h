@@ -11,7 +11,7 @@
 
 class DrumScroller : public Fx {
     private:
-        const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::Blue, CRGB::Blue, CRGB::DarkRed, CRGB::Yellow);
+        const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::Blue, CRGB::Blue, CRGB::Red, CRGB::Yellow);
         Strip *strip;
         AudioChannel *audioChannel;
         State *state;
