@@ -1,17 +1,7 @@
 #include "Ripple.h"
 
-Ripple::Ripple(Strip *strip) {
-    this->strip = strip;
-    items = new Item[ITEMS];
-    for (uint8_t i = 0; i < ITEMS; i++) {
-        items[i].ball.setup(strip);
-    }
-}
-
-Ripple::Ripple(Strip *strip, AudioChannel *audioChannel, State *state) {
-    this->strip = strip;
-    this->audioChannel = audioChannel;
-    this->state = state;
+Ripple::Ripple(Strip *strip, AudioChannel *audioChannel, State *state) : Fx(strip, audioChannel, state) {
+    audioTrigger = new AudioTrigger(audioChannel);
     items = new Item[ITEMS];
     for (uint8_t i = 0; i < ITEMS; i++) {
         items[i].ball.setup(strip);
@@ -19,17 +9,19 @@ Ripple::Ripple(Strip *strip, AudioChannel *audioChannel, State *state) {
 }
 
 Ripple::~Ripple() {
+    delete audioTrigger;
     delete[] items;
 }
 
 void Ripple::reset() {
-    clear(strip);
+    clear();
     for (uint8_t i = 0; i < ITEMS; i++) {
         items[i].ball.reset();
         items[i].timer = 0;
         items[i].decay = 0;
     }
     fadeTimer.reset();
+    audioTrigger->reset();
 }
 
 void Ripple::loop() {
@@ -41,7 +33,7 @@ void Ripple::loop() {
         }
     }
 
-    bool trigger = audioChannel->trigger(10);
+    bool trigger = audioTrigger->triggered(2);
 
     for (uint8_t i = 0; i < ITEMS; i++) {
         loopItem(items[i], trigger, audioChannel->beatDetected ? audioChannel->rms : .1f);

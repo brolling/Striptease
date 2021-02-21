@@ -1,16 +1,18 @@
 #include "Jelly.h"
 
-Jelly::Jelly(Strip *strip, AudioChannel *audioChannel, State *state) {
-    this->strip = strip;
-    this->audioChannel = audioChannel;
-    this->state = state;
+Jelly::Jelly(Strip *strip, AudioChannel *audioChannel, State *state) : Fx(strip, audioChannel, state) {
+    audioTrigger = new AudioTrigger(audioChannel);
     for (int i = 0; i < ITEMS; i++) {
         items[i].setup(strip);
     }
 }
 
+Jelly::~Jelly() {
+    delete audioTrigger;
+}
+
 void Jelly::reset() {
-    clear(strip);
+    clear();
     for (int i = 0; i < ITEMS; i++) {
         uint8_t size = random8(2, 5);
         items[i].reset()
@@ -25,6 +27,7 @@ void Jelly::reset() {
     }
     moveTimer.reset();
     fadeTimer.reset();
+    audioTrigger->reset();
 }
 
 void Jelly::loop() {
@@ -32,7 +35,7 @@ void Jelly::loop() {
         strip->fade(FADE_RATE);
     }
 
-    if (audioChannel->trigger(2)) {
+    if (audioTrigger->triggered(1)) {
         if (moveTimer.isElapsed()) {
             for (int i = 0; i < ITEMS; i++) {
                 items[i].setFixedPointPosition(strip->randomExclude(items[i].getPosition(), 5));

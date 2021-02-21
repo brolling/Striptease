@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <FastLED.h>
 #include "AudioChannel.h"
+#include "AudioTrigger.h"
 #include "Fx.h"
 #include "HarmonicMotion.h"
 #include "State.h"
@@ -17,14 +18,13 @@ class Volcane: public Fx {
             HarmonicMotion tail;
         };
         const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::Blue, CRGB::Green);
-        Strip *strip;
-        AudioChannel *audioChannel;
-        State *state;
+        AudioTrigger *audioTrigger;
         Item items[NUM_ITEMS];
         void restart(Item *item);
 
     public:
         Volcane(Strip *strip, AudioChannel *audioChannel, State *state);
+        ~Volcane();
         void loop();
         void reset();
 };

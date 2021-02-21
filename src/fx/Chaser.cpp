@@ -1,16 +1,18 @@
 #include "Chaser.h"
 
-Chaser::Chaser(Strip *strip, AudioChannel *audioChannel, State *state) {
-    this->strip = strip;
-    this->audioChannel = audioChannel;
-    this->state = state;
+Chaser::Chaser(Strip *strip, AudioChannel *audioChannel, State *state) : Fx(strip, audioChannel, state) {
+    audioTrigger = new AudioTrigger(audioChannel);
     for (uint8_t i = 0; i < ITEMS; i++) {
         items[i].setup(strip);
     }
 }
 
+Chaser::~Chaser() {
+    delete audioTrigger;
+}
+
 void Chaser::reset() {
-    clear(strip);
+    clear();
     for (int i = 0; i < ITEMS; i++) {
         uint8_t size = random8(2, 5);
         items[i].reset()
@@ -25,6 +27,7 @@ void Chaser::reset() {
     }
     moveTimer.reset();
     fadeTimer.reset();
+    audioTrigger->reset();
 }
 
 void Chaser::loop() {
@@ -32,7 +35,7 @@ void Chaser::loop() {
         strip->fade(FADE_RATE);
     }
 
-    if (audioChannel->trigger(5)) {
+    if (audioTrigger->triggered(1)) {
         if (moveTimer.isElapsed()) {
             items[0].setFixedPointPosition(strip->randomExclude(items[0].getPosition(), 5));
         }

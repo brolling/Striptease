@@ -5,6 +5,7 @@
 #include <FastLED.h>
 #include "Fx.h"
 #include "AudioSensor.h"
+#include "AudioTrigger.h"
 #include "HarmonicMotion.h"
 #include "State.h"
 
@@ -16,12 +17,10 @@ class Ants : public Fx {
             HarmonicMotion item;
             uint8_t decay;
         };
-        Strip *strip;
-        AudioChannel *audioChannel;
-        State *state;
+        AudioTrigger *audioTrigger;
         Item *items;
-        void loopItem(Item &item, bool &trigger, float strength);
-        void randomizeItem(Item &item, float strength);
+        void loopItem(Item &item, bool &trigger);
+        void resetItem(Item &item);
 
     public:
         Ants(Strip *strip, AudioChannel *audioChannel, State *state);

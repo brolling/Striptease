@@ -22,6 +22,7 @@
  */
 
 #include "AudioSensor.h"
+#include "BufferedStrip.h"
 #include "Controller.h"
 #include "Remote.h"
 #include "SerialRemote.h"
@@ -30,3 +31,4 @@
 #include "JoinedStrip.h"
 #include "PhysicalStrip.h"
 #include "ReversedStrip.h"
+#include "SubStrip.h"

@@ -5,6 +5,7 @@
 #include <FastLED.h>
 #include "Fx.h"
 #include "AudioSensor.h"
+#include "AudioTrigger.h"
 #include "HarmonicMotion.h"
 #include "State.h"
 #include "Timer.h"
@@ -12,9 +13,7 @@
 class Elastic : public Fx {
     private:
         const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::White, CRGB::Blue, CRGB::Aqua, CRGB::Red);
-        Strip *strip;
-        AudioChannel *audioChannel;
-        State *state;
+        AudioTrigger *audioTrigger;
         static const uint8_t ITEMS = 2;
         static const uint8_t FADE_RATE = 30;
         HarmonicMotion items[ITEMS];
@@ -24,6 +23,7 @@ class Elastic : public Fx {
 
     public:
         Elastic(Strip *strip, AudioChannel *audioChannel, State *state);
+        ~Elastic();
         void loop();
         void reset();
 };

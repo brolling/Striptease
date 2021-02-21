@@ -1,14 +1,17 @@
 #include "Strobe.h"
 
-Strobe::Strobe(Strip *strip, AudioChannel *audioChannel, State *state) {
-    this->strip = strip;
-    this->audioChannel = audioChannel;
-    this->state = state;
+Strobe::Strobe(Strip *strip, AudioChannel *audioChannel, State *state) : Fx(strip, audioChannel, state) {
+    audioTrigger = new AudioTrigger(audioChannel);
+}
+
+Strobe::~Strobe() {
+    delete audioTrigger;
 }
 
 void Strobe::reset() {
-    clear(strip);
+    clear();
     timer.reset();
+    audioTrigger->reset();
 }
 
 void Strobe::loop() {
@@ -17,7 +20,7 @@ void Strobe::loop() {
         strip->blur(100);
     }
 
-    bool trigger = audioChannel->trigger(5);
+    bool trigger = audioTrigger->triggered(1);
 
     if (trigger) {
         strip->off();

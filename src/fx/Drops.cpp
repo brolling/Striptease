@@ -1,9 +1,7 @@
 #include "Drops.h"
 
-Drops::Drops(Strip *strip, AudioChannel *audioChannel, State *state) {
-    this->strip = strip;
-    this->audioChannel = audioChannel;
-    this->state = state;
+Drops::Drops(Strip *strip, AudioChannel *audioChannel, State *state) : Fx(strip, audioChannel, state) {
+    audioTrigger = new AudioTrigger(audioChannel);
     items = new Item[ITEMS];
     for (uint8_t i = 0; i < ITEMS; i++) {
         items[i].center.setup(strip);
@@ -12,11 +10,12 @@ Drops::Drops(Strip *strip, AudioChannel *audioChannel, State *state) {
 }
 
 Drops::~Drops() {
+    delete audioTrigger;
     delete[] items;
 }
 
 void Drops::reset() {
-    clear(strip);
+    clear();
     for (uint8_t i = 0; i < ITEMS; i++) {
         items[i].center.reset();
         items[i].sides.reset();
@@ -26,7 +25,7 @@ void Drops::reset() {
 void Drops::loop() {
     strip->paint(BACKGROUND_COLOR);
 
-    bool trigger = audioChannel->trigger(3);
+    bool trigger = audioTrigger->triggered(1);
 
     for (uint8_t i = 0; i < ITEMS; i++) {
         loopItem(items[i], trigger, audioChannel->beatDetected ? audioChannel->rms : .1f);

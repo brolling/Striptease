@@ -1,16 +1,19 @@
 #include "Beat.h"
 
-Beat::Beat(Strip *strip, AudioChannel *audioChannel) {
-    this->strip = strip;
-    this->audioChannel = audioChannel;
+Beat::Beat(Strip *strip, AudioChannel *audioChannel) : Fx(strip, audioChannel) {
+    audioTrigger = new AudioTrigger(audioChannel);
     peak.setup(strip);
     peakHold.setup(strip);
     peakHoldSlow.setup(strip);
     reset();
 }
 
+Beat::~Beat() {
+    delete audioTrigger;
+}
+
 void Beat::reset() {
-    clear(strip);
+    clear();
     uint16_t center = strip->center();
 
     peak.reset()
@@ -44,11 +47,12 @@ void Beat::reset() {
         .setShowWhenStable(true);
 
     timer.reset();
+    audioTrigger->reset();
 }
 
 void Beat::loop() {
     strip->off();
-    if (audioChannel->trigger(3)) {
+    if (audioTrigger->triggered(1)) {
         if (timer.isElapsed()) {
             uint16_t pos = (1 + audioChannel->rms) * strip->center(); 
             peak.setPosition(max(peak.getPosition(), pos));

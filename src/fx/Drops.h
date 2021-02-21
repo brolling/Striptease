@@ -5,6 +5,7 @@
 #include <FastLED.h>
 #include "Fx.h"
 #include "AudioSensor.h"
+#include "AudioTrigger.h"
 #include "HarmonicMotion.h"
 #include "State.h"
 
@@ -19,9 +20,7 @@ class Drops : public Fx {
             HarmonicMotion sides;
             uint8_t decay;
         };
-        Strip *strip;
-        AudioChannel *audioChannel;
-        State *state;
+        AudioTrigger *audioTrigger;
         Item *items;
         void loopItem(Item &item, bool &trigger, float strength);
         void randomizeItem(Item &item, float strength);

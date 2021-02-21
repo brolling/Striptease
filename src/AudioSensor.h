@@ -10,27 +10,56 @@ class AudioSensor {
     private:
         static const uint8_t DEFAULT_MIC_GAIN = 40;
         static const uint8_t DEFAULT_LINE_IN_LEVEL = 5;
-        static const uint8_t MAX_MEMORY_BLOCKS = 8;
+        static const uint8_t MAX_MEMORY_BLOCKS = 12;
+        static constexpr float LOWPASS_FREQUENCY = 250;
+
         AudioInputI2S audioInput;
+
         AudioAnalyzePeak peak_L;
         AudioAnalyzeRMS rms_L;
+        AudioFilterBiquad filter_L;
+        AudioAnalyzeRMS rmsLow_L;
         AudioAnalyzeFFT256 fft_L;
+
         AudioAnalyzePeak peak_R;
         AudioAnalyzeRMS rms_R;
+        AudioFilterBiquad filter_R;
+        AudioAnalyzeRMS rmsLow_R;
         AudioAnalyzeFFT256 fft_R;
-        AudioMixer4 mixer;
+
+        AudioMixer4 mixerUnfiltered;
+        AudioMixer4 mixerFiltered;
+
         AudioAnalyzePeak peak_M;
         AudioAnalyzeRMS rms_M;
-        AudioConnection *cpl;
-        AudioConnection *crl;
-        AudioConnection *cfl;
-        AudioConnection *cml;
-        AudioConnection *cpr;
-        AudioConnection *crr;
-        AudioConnection *cfr;
-        AudioConnection *cmr;
-        AudioConnection *cpm;
-        AudioConnection *crm;
+        AudioFilterBiquad filter_M;
+        AudioAnalyzeRMS rmsLow_M;
+        AudioAnalyzeFFT256 fft_M;
+
+        AudioConnection *patchPeakLeft;
+        AudioConnection *patchRMSLeft;
+        AudioConnection *patchFilterLeft;
+        AudioConnection *patchRMSLowLeft;
+        AudioConnection *patchFFTLeft;
+
+        AudioConnection *patchMixerUnfilteredLeft;
+        AudioConnection *patchMixerFilteredLeft;
+        
+        AudioConnection *patchPeakRight;
+        AudioConnection *patchRMSRight;
+        AudioConnection *patchFilterRight;
+        AudioConnection *patchRMSLowRight;
+        AudioConnection *patchFFTRight;
+
+        AudioConnection *patchMixerUnfilteredRight;
+        AudioConnection *patchMixerFilteredRight;
+
+        AudioConnection *patchPeakMono;
+        AudioConnection *patchRMSMono;
+        AudioConnection *patchFilterMono;
+        AudioConnection *patchRMSLowMono;
+        AudioConnection *patchFFTMono;
+
         AudioControlSGTL5000 *audioShield;
         uint8_t micGain = DEFAULT_MIC_GAIN;
         uint8_t lineInLevel = DEFAULT_LINE_IN_LEVEL;
@@ -54,6 +83,7 @@ class AudioSensor {
         void decreaseLineInLevel();
         float getNormalizedMicGain();
         float getNormalizedLineInLevel();
+        void printStats();
 };
 
 #endif
