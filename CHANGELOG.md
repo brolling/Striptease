@@ -1,3 +1,32 @@
+# version 1.2.3
+
+## Hardware
+- replaced cryptic PCB connector labels (J1, J2, J3) with more sensible ones
+
+# version 1.2.2
+
+## Bugfixes
+- fixed various bugs triggered by corner cases, especially when using JoinedStrip
+
+### HarmonicMotion
+- fixed a bug caused by a wrong assignment
+
+## Additions and improvements
+
+### Multiplex
+- refactored and increased the number of fx to 9.
+
+### HarmonicMotion
+- added methods for random positioning
+
+### Bounce
+- implemented a new simple fx
+
+# version 1.2.1
+
+## Bugfixes
+- fixed various JoinedStrip bugs
+
 # version 1.2.0
 
 ## BREAKING CHANGES
@@ -10,27 +39,45 @@
 
 ## Bugfixes
 
+### Strip
+- fixed paintNormalizedSize method
+
 ### JoinedStrip
 - fixed paint method when indexFrom falls in strip 1 and indexTo falls in strip 2
-- gap has been replaced with a PhysicalStrip
+- gap has been replaced with a StatefulStrip, so that its behavior is consistent with the visible portion 
 
 ## Additions and improvements
+
+### Strip
+- implemented *buffered()* method for creating a buffered version of a Strip, useful for those effects which alter the underlying Strip using blur, fade, shift, etc.
 
 ### SubStrip
 - implemented a new Strip implementation for addressing a portion of another Strip
 
 ### AudioTrigger
-- implemented for allowing beat detection over more than one loop, independently for multiplexed effects
+- implemented for allowing beat detection over more than one loop, independently for concurrent effects
 - the triggered method returns true if a beat was detected since the last call (or since the last call to the reset method)
 - optionally, random triggers can be added (separately for signal detected or not), specifying the number of desired events per second
 
 ### AudioSensor
-- implemented a separate low-pass-filtered RMS sensor for feeding the beat detector, which now responds to bass only
+- implemented a separate low-pass-filtered RMS sensor for feeding the beat detector, which now responds to low frequencies only
+
+### Fx
+- implemented *strip*, *audioChannel* and *state* as Fx protected members, so that they don't need to be redefined for each effect implementation
+
+### Matrix fx
+- reimplemented without timers, for maximum smoothness
+
+### PeakMeter fx
+- reduced flashing on beat detected
+
+### VU2 fx
+- implemented new effect
 
 # version 1.1.5
 
 ## Bugfixes
-
+x
 ### AudioChannel
 - fixed wrong number of FFT bins, now 128 (it was 40)
 
