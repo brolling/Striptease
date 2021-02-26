@@ -1,26 +1,15 @@
-#ifndef JoinedStrip_h
-#define JoinedStrip_h
+#ifndef ReversedStrip_h
+#define ReversedStrip_h
 
 #include "Strip.h"
-#include "BufferedStrip.h"
-#include "StatefulStrip.h"
+#include "strip/BufferedStrip.h"
 
-class JoinedStrip : public Strip {
+class ReversedStrip : public Strip {
     private: 
-        Strip *strip1, *strip2;
-        uint16_t gap;
-        CRGB *buffer;
-        CRGBSet *bufferSet;
-        StatefulStrip *gapStrip;
-        bool isInStrip1(int16_t index);
-        bool isInGap(int16_t index);
-        bool isInStrip2(int16_t index);
-        int16_t toStrip1(int16_t index);
-        int16_t toGap(int16_t index);
-        int16_t toStrip2(int16_t index);
+        Strip *strip;
 
     public:
-        JoinedStrip(Strip *strip, Strip *strip2, int16_t gap = 0);
+        ReversedStrip(Strip *strip);
         Strip *buffered();
         uint16_t size();
         uint16_t first();

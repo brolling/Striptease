@@ -4,23 +4,35 @@
 #include <FastLED.h>
 
 class Strip {
-    public:
-        virtual 
-        Strip *buffered() {
-            return this;
-        }
-        void sanitize(int16_t &indexFrom, int16_t &indexTo) {
-            int16_t from = limitToRange(indexFrom);
-            int16_t to = limitToRange(indexTo);
-            if (from <= to) {
-                indexFrom = from;
-                indexTo = to;
-            } else {
+    private:
+        void enforceOrder(int16_t &indexFrom, int16_t &indexTo) {
+            int16_t from = indexFrom;
+            int16_t to = indexTo;
+            if (from > to) {
                 indexFrom = to;
                 indexTo = from;
             }
         }
-        virtual void flush() {};
+
+    public:
+        virtual Strip *buffered() {
+            return this;
+        }
+
+        virtual void flush() {
+            // no-op
+        };
+        
+        bool crop(int16_t &indexFrom, int16_t &indexTo) {
+            enforceOrder(indexFrom, indexTo);
+            if (indexTo < first() || indexFrom > last()) {
+                return false;
+            }
+            indexFrom = limitToRange(indexFrom);
+            indexTo = limitToRange(indexTo);
+            return true;
+        }
+
         virtual bool isInRange(int16_t index);
         virtual uint16_t limitToRange(int16_t index);
         virtual uint16_t size();

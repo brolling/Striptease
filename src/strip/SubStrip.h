@@ -1,15 +1,17 @@
-#ifndef ReversedStrip_h
-#define ReversedStrip_h
+#ifndef SubStrip_h
+#define SubStrip_h
 
-#include "Strip.h"
-#include "BufferedStrip.h"
+#include "strip/BufferedStrip.h"
 
-class ReversedStrip : public Strip {
+class SubStrip : public Strip {
     private: 
         Strip *strip;
+        uint16_t start;
+        uint16_t end;
+        int16_t toStrip(int16_t index);
 
     public:
-        ReversedStrip(Strip *strip);
+        SubStrip(Strip *strip, int16_t start, int16_t end);
         Strip *buffered();
         uint16_t size();
         uint16_t first();
