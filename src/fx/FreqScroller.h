@@ -11,16 +11,13 @@
 
 class FreqScroller : public Fx {
     private:
-        const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::DarkMagenta, CRGB::Red, CRGB::Yellow);
-        Strip *strip;
-        AudioChannel *audioChannel;
-        State *state;
-        bool direction;
+        const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::SteelBlue, CRGB::Red, CRGB::Red, CRGB::Yellow);
         elapsedMillis shiftTimer;
-        float prev_spectrumval = 0;
+        int deflapper = 0;
+        int prev_color = 0;
 
     public:
-        FreqScroller(Strip *strip, AudioChannel *audioChannel, State *state, bool direction);
+        FreqScroller(Strip *strip, AudioChannel *audioChannel, State *state);
         void loop();
         void reset();
 };

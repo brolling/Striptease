@@ -5,23 +5,32 @@ MyStage::MyStage(AudioSensor *audioSensor, State *state) {
     PhysicalStrip *right = new PhysicalStrip(rightArray, STRIP_RIGHT_DENSITY);
     PhysicalStrip *top = new PhysicalStrip(topArray, STRIP_TOP_DENSITY);
 
-    Strip *topR = new SubStrip(top, 0, 74);
-    Strip *topL = new SubStrip(top, 75, 150);
-
-    Strip *Lsub = new SubStrip(left, 0, 90);
-    Strip *Rsub = new SubStrip(right, 0, 91);
-
     addStrip(left);
     addStrip(right);
     addStrip(top);
 
+    Strip *topL = new SubStrip(new ReversedStrip(top), 75, 151);
+    Strip *topR = new SubStrip(top, 75, 151);
+
+    /*
     addFx(
-        //new Photons(Lsub, audioSensor->left, state),
-        //new Photons(Rsub, audioSensor->right, state),
+        new DrumScroller(left, audioSensor->left, state), 
+        new DrumScroller(right, audioSensor->right, state), 
+        new FreqScroller(topL, audioSensor->left, state), 
+        new FreqScroller(topR, audioSensor->right, state),
+        new VU2(left->buffered(), audioSensor->left, CRGB::Green),
+        new VU2(right->buffered(), audioSensor->right, CRGB::Green),
+
+        new Blackout(left),
+        new Blackout(right)
+    );
+    */
+
+    addFx(
         new DrumScroller(left, audioSensor->left, state),
         new DrumScroller(right, audioSensor->right, state),
-        new FreqScroller(topL, audioSensor->left, state, 0),
-        new FreqScroller(topR, audioSensor->right, state, 1)
+        new FreqScroller(topL, audioSensor->left, state),
+        new FreqScroller(topR, audioSensor->right, state)
     ); //1
     addFx(new Beat(left, audioSensor->left), new Beat(right, audioSensor->right), new Drops(top, audioSensor->mono, state)); 
     addFx(new Volcane(left, audioSensor->left, state), new Volcane(right, audioSensor->right, state));
@@ -37,7 +46,7 @@ MyStage::MyStage(AudioSensor *audioSensor, State *state) {
     addFx(new Ripple(left, audioSensor->left, state), new Ripple(right, audioSensor->right, state));
     addFx(new Strobe(left, audioSensor->left, state), new Strobe(right, audioSensor->right, state));
     addFx(new Ants(left, audioSensor->left, state), new Ants(right, audioSensor->right, state));//15
-    addFx(new FreqScroller(top, audioSensor->mono, state, 0), new Photons(left, audioSensor->left, state), new Photons(right, audioSensor->right, state)); // nice.
+    // addFx(new FreqScroller(top, audioSensor->mono, state, 0), new Photons(left, audioSensor->left, state), new Photons(right, audioSensor->right, state)); // nice.
     addFx(new Fire(left, audioSensor->left), new Fire(right, audioSensor->right));
     addFx(new Beat(left, audioSensor->left), new Beat(right, audioSensor->right), new Drops(top, audioSensor->mono, state));
     addFx(new Blur(left), new Blur(right));

@@ -10,10 +10,9 @@
 
 class DrumScroller : public Fx {
     private:
-        const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::Blue, CRGB::Purple, CRGB::Red, CRGB::Yellow);
+        const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::Blue, CRGB::Blue, CRGB::Red, CRGB::Yellow);
         elapsedMillis shiftTimer;
-        int deflapper = 0;
-        int prev_color = 0;
+        float prev_spectrumval = 0;
 
     public:
         DrumScroller(Strip *strip, AudioChannel *audioChannel, State *state);
