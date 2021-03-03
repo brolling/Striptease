@@ -23,7 +23,7 @@ void FreqScroller::loop() {
         int highest_frequency_band = 0;
         float mids = 0;
 
-        for (uint8_t i = 15; i <= 50; i++) {
+        for (uint8_t i = 13; i <= 50; i++) {
             mids += audioChannel->fftBin[i] * 200;
         };
         

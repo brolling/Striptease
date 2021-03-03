@@ -11,7 +11,7 @@
 
 class FreqScroller : public Fx {
     private:
-        const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::SteelBlue, CRGB::Red, CRGB::Red, CRGB::Yellow);
+        const CRGBPalette16 PALETTE = CRGBPalette16(CRGB::SteelBlue, CRGB::Red, CRGB::Orange, CRGB::Yellow);
         elapsedMillis shiftTimer;
         int deflapper = 0;
         int prev_color = 0;

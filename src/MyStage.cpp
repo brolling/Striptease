@@ -11,18 +11,16 @@ MyStage::MyStage(AudioSensor *audioSensor, State *state) {
 
     Strip *topL = new SubStrip(new ReversedStrip(top), 75, 151);
     Strip *topR = new SubStrip(top, 75, 151);
-
     /*
     addFx(
-        new DrumScroller(left, audioSensor->left, state), 
-        new DrumScroller(right, audioSensor->right, state), 
-        new FreqScroller(topL, audioSensor->left, state), 
-        new FreqScroller(topR, audioSensor->right, state),
-        new VU2(left->buffered(), audioSensor->left, CRGB::Green),
-        new VU2(right->buffered(), audioSensor->right, CRGB::Green),
-
-        new Blackout(left),
-        new Blackout(right)
+        new Multiplex(
+            new Matrix(top, audioSensor->mono, state), 
+            new Fireworks(top->buffered(), audioSensor->mono, state), 
+            new DrumScroller(left->buffered(), audioSensor->left, state),
+            new DrumScroller(right->buffered(), audioSensor->right, state),
+            new VU2(left->buffered(), audioSensor->left, 1, 500), 
+            new VU2(right->buffered(), audioSensor->right, 1, 500)
+        )
     );
     */
 
@@ -32,17 +30,26 @@ MyStage::MyStage(AudioSensor *audioSensor, State *state) {
         new FreqScroller(topL, audioSensor->left, state),
         new FreqScroller(topR, audioSensor->right, state)
     ); //1
+    addFx(
+        new Photons(left, audioSensor->left, state),
+        new Photons(right, audioSensor->right, state),
+        new FreqScroller(topL, audioSensor->left, state),
+        new FreqScroller(topR, audioSensor->right, state)
+    ); //1
+
+
     addFx(new Beat(left, audioSensor->left), new Beat(right, audioSensor->right), new Drops(top, audioSensor->mono, state)); 
     addFx(new Volcane(left, audioSensor->left, state), new Volcane(right, audioSensor->right, state));
-    addFx(new Jelly(left, audioSensor->left, state), new Jelly(right, audioSensor->right, state));
-    addFx(new Chaser(left, audioSensor->left, state), new Chaser(right, audioSensor->right, state)); //5
-    addFx(new Rainbow(left, state), new Rainbow(right, state, 128));//6
-    addFx(new Orbit(left, state), new Orbit(right, state, 120)); 
-    addFx(new VU1(left, audioSensor->left), new VU1(right, audioSensor->right));
-    addFx(new Elastic(left, audioSensor->left, state), new Elastic(right, audioSensor->right, state));
-    addFx(new Sinelon(left, state), new Sinelon(right, state)); //10
-    addFx(new SineMeter(left, audioSensor->left, state), new SineMeter(right, audioSensor->right, state)); 
-    addFx(new PeakMeter(left, audioSensor->left), new PeakMeter(right, audioSensor->right)); //flashes whole strip with beats
+    addFx(new Jelly(left, audioSensor->left, state), new Jelly(right, audioSensor->right, state), new Jelly(topR, audioSensor->right, state), new Jelly(topL, audioSensor->left, state));
+    addFx(new Chaser(left, audioSensor->left, state), new Chaser(right, audioSensor->right, state), new Chaser(topL, audioSensor->left, state), new Chaser(topR, audioSensor->right, state)); //5
+    addFx(new Rainbow(left, state), new Rainbow(right, state, 128), new Rainbow(topL, state), new Rainbow(topR, state, 128));//6
+    addFx(new Orbit(left, state), new Orbit(right, state, 120), new Orbit(top, state)); 
+    addFx(new VU1(left, audioSensor->left), new VU1(right, audioSensor->right), new VU1(topL, audioSensor->left), new VU1(topR, audioSensor->right));
+    addFx(new VU2(left, audioSensor->left), new VU2(right, audioSensor->right), new VU2(topL, audioSensor->left), new VU2(topR, audioSensor->right));
+    addFx(new Elastic(left, audioSensor->left, state), new Elastic(right, audioSensor->right, state), new Elastic(top, audioSensor->mono, state));
+    addFx(new Sinelon(left, state), new Sinelon(right, state), new Sinelon(top, state)); //10
+    addFx(new SineMeter(left, audioSensor->left, state), new SineMeter(right, audioSensor->right, state), new SineMeter(topL, audioSensor->left, state), new SineMeter(topR, audioSensor->right, state)); 
+    addFx(new PeakMeter(left, audioSensor->left), new PeakMeter(right, audioSensor->right), new PeakMeter(topL, audioSensor->left), new PeakMeter(topR, audioSensor->right)); //flashes whole strip with beats
     addFx(new Ripple(left, audioSensor->left, state), new Ripple(right, audioSensor->right, state));
     addFx(new Strobe(left, audioSensor->left, state), new Strobe(right, audioSensor->right, state));
     addFx(new Ants(left, audioSensor->left, state), new Ants(right, audioSensor->right, state));//15
